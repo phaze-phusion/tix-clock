@@ -1,0 +1,70 @@
+html,
+body {
+  background-color: #000;
+  color: hsl(0, 0%, 84.7%);
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+.wrapper {
+  margin: 20px auto 0;
+  width: 80vw;
+}
+
+#clock-grid {
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 2fr 1fr repeat(3, 2fr) 1fr repeat(2, 2fr) 1fr repeat(3, 2fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    'ht-0 . ho-0 ho-1 ho-2 . mt-0 mt-1 . mo-0 mo-1 mo-2'
+    'ht-1 . ho-3 ho-4 ho-5 . mt-2 mt-3 . mo-3 mo-4 mo-5'
+    'ht-2 . ho-6 ho-7 ho-8 . mt-4 mt-5 . mo-6 mo-7 mo-8';
+}
+
+@for $a from 0 through 2 {
+  #ht-#{$a} {grid-area: ht-#{$a};}
+}
+
+@for $b from 0 through 5 {
+  #mt-#{$b} {grid-area: mt-#{$b};}
+}
+
+@for $c from 0 through 8 {
+  #ho-#{$c} {grid-area: ho-#{$c};}
+  #mo-#{$c} {grid-area: mo-#{$c};}
+}
+
+.ht,
+.ho,
+.mt,
+.mo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 10%;
+  background-color: hsl(0, 0%, 10.2%);
+}
+
+.active {
+  // box-shadow: inset 0 0 40px #000;
+
+  &.ht {
+    background-color: hsl(0, 100%, 50%);
+  }
+
+  &.ho {
+    background-color: hsl(120, 100%, 25%);
+  }
+
+  &.mt {
+    background-color: hsl(240, 100%, 50%);
+  }
+
+  &.mo {
+    background-color: hsl(0, 100%, 50%);
+  }
+}
